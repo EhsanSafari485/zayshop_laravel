@@ -1,0 +1,48 @@
+.dashboard-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+    direction: rtl;
+}
+
+.summary-box {
+    background-color: #0e1726;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    text-align: right;
+}
+
+.summary-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.summary-box h3 {
+    font-size: 16px;
+    color: rgba(151, 140, 140, 0.568);
+    margin-bottom: 8px;
+}
+
+.summary-box p {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+.popularColor{
+    display: inline-block;
+    margin-right: 3px;
+}
+.showColor{
+    display: inline-block;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+/* ادیتور بلاگ */
+
+

@@ -1,0 +1,390 @@
+body {
+    padding-top: 90px; /* به اندازه ارتفاع هدر */
+}
+
+/* حرکت اسلایدر ها */
+.swiper {
+    width: 100%;
+    height: auto;
+
+}
+.categorySwiper{
+    margin: 50px;
+}
+.ProductSwiper{
+    width: 100%;
+    padding: 100px;
+}
+.margin-swiper{
+    border-radius: none;
+}
+
+/* سایز اسلاید ها */
+.slider-image-wrapper {
+    width: 100%;
+    height: 300px; /* می‌تونی ارتفاع دلخواه‌تو بزاری */
+    overflow: hidden;
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* اسلاید دوم */
+.img-slide0{
+    position: relative;
+    height: 300px;
+    margin: 20px;
+}
+.img-slide1{
+    position: absolute;
+    height: 100%;
+    width: 65%;
+    border-radius: 30px;
+    right: 0;
+
+}
+.img-slide2{
+    position: absolute;
+    height: 48%;
+    width: 33%;
+    border-radius: 30px;
+    left: 0;
+}
+.slide2{
+    position: absolute;
+    bottom: 0;
+}
+/* product */
+.product-bg{
+    position: relative;
+    background-color: rgb(224, 226, 226);
+}
+.product{
+    margin: 40px;
+    bottom: 100px;
+}
+/* title-product */
+.title-product{
+    position: relative;
+    background-color: #59ab6e;
+    border-radius: 10px;
+    margin: 50px 25px;
+    height: 60px;
+    color: white;
+}
+.p-product{
+    position: absolute;
+    padding-top: 15px;
+    display: inline-block;
+    text-align: center;
+    left: 42%;
+}
+.a-product{
+    position: absolute;
+    right: 10px;
+    padding-top: 15px;
+    color: white;
+    text-decoration: none;
+}
+.a-product:hover{
+    color: aquamarine;
+}
+/* heder */
+.navbar {
+    background-color: #fff ;
+}
+/* تصاویر فروشگاه */
+.product-image-wrapper {
+    width: 100%;
+    aspect-ratio: 2.3 / 3;
+    overflow: hidden;
+    display: block;
+    background: #f9f9f9;
+    position: relative;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* صفحه بندی فروشگاه */
+
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    /* border-radius: 20px; */
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    color: #59ab6e;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #59ab6e;
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #59ab6e;
+    color: #fff;
+    border: 1px solid #59ab6e;
+}
+/* کارت های نمایش محصول */
+.product-wap {
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.product-wap:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-overlay {
+    background: none !important;
+    padding: 0 !important;
+}
+
+.card-img-overlay a {
+    background: rgba(0, 128, 0, 0.7);
+    /* border-radius: 50%; */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+.card-img-overlay a:hover {
+    background: rgba(0, 128, 0, 1);
+}
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+  @media (max-width: 768px) {
+    .product-wap {
+        transform: scale(1.05);
+        margin: 10px auto;
+    }
+}
+/* فیلترها */
+.filter-bar .dropdown-toggle::after {
+    margin-right: 5px;
+}
+.filter-bar .dropdown-menu {
+    font-size: 14px;
+}
+.filter-bar .dropdown-item {
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-bar > div {
+        width: 100%;
+    }
+}
+
+#product-container{
+    margin-top: 15px;
+}
+/* show Color */
+.showColor{
+    display: inline-block;
+    position: absolute;
+    left: 50px;
+    border-radius:5px ;
+    height: 20px;
+    width: 20px;
+}
+/* استایل برای لیست چک‌باکس‌ها */
+ul.dropdown-menu li {
+    display: flex;
+    justify-content: space-between; /* چک‌باکس و متن را از هم جدا می‌کند */
+    align-items: center; /* تنظیم عمودی عناصر */
+}
+
+ul.dropdown-menu li input[type="checkbox"] {
+    order: 2; /* چک‌باکس را به سمت راست می‌برد */
+}
+
+ul.dropdown-menu li label {
+    order: 1; /* متن را به سمت چپ می‌برد */
+}
+/* active-border */
+.active-border {
+    border: 3px solid black; /* سبز یا هر رنگی که دوست داری */
+    border-radius: 5px; /* کمی گوشه‌ها گرد */
+}
+.active-color {
+    background-color: gray !important;
+}
+.card-img{
+    height: 550px;
+}
+.btn-color {
+    border-radius: 8px;
+    /* border: 1px solid black; */
+    transition: all 0.3s ease;
+}
+.btn-color:hover {
+    transform: scale(1.1);
+}
+.btn-size {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.btn-size:hover {
+    transform: scale(1.1);
+}
+
+
+/* ====================== */
+a{
+    text-decoration: none;
+}
+.title-category{
+    color: #59ab6e;
+}
+.title-category:hover{
+    color: rgb(15, 112, 55);
+}
+
+.text-product{
+    color: black;
+}
+.text-product:hover{
+    color: rgb(15, 112, 55);
+}
+
+.swiper-slide{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+/* ایکون قلب */
+/* .favorite-btn {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.favorite-btn i {
+    font-size: 18px;
+    color: black;
+} */
+
+/* حالت فعال (قلب پر شده) */
+.favorite-btn.active i {
+    font-weight: 900;
+    font-family: "Font Awesome 6 Free";
+    content: "\f004"; /* قلب پر */
+    color: white;
+}
+
+.btn-heart{
+    padding: 8px;
+    position: absolute; z-index: 999; top: 0; left: 0;
+}
+button.btn-heart{
+    border: none;
+}
+
+/* ایکو تخفیف */
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 4px 4px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    z-index: 10;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* سایز تصاویر محصولات صفحه اصلی */
+/* ارتفاع ثابت برای کل کارت */
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* تصویر محصول - محدود کردن ارتفاع */
+.product-image-wrapper {
+    height: 450px; /* یا هر عدد دلخواه */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .product-image-wrapper {
+        height: 350px;
+    }
+}
+
+.product-image {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ارتفاع عنوان محصول و متن قیمت */
+.product-title {
+    min-height: 30px;
+    font-size: 18px;
+    overflow: hidden;
+}
+
+/* تنظیم کلی برای ارتفاع بخش بدنه کارت */
+.product-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* پیشنهادات سرچ */
+
+#suggestions {
+    margin-top: 25px;
+    /* background-color: #fff; */
+    /* border: 1px solid #ccc; */
+    /* max-height: 300px; */
+    /* overflow-y: auto; */
+    border-radius: 5px;
+    left: 0;
+}
+
+#suggestions li:hover {
+    background-color: #f1f1f1;
+}
+
+#suggestions li{
+    border-radius: 5px;
+     cursor:pointer;
+}
