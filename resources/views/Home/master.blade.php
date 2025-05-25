@@ -56,6 +56,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="{{ route('Home.shop') }}">فروشگاه</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('blogs.index') }}">بلاگ</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('Home.about') }}">درباره</a>
                         </li>
                         {{-- <li class="nav-item">

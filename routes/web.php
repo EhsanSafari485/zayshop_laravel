@@ -23,6 +23,7 @@ use App\Http\Controllers\Panel\userController;
 use App\Http\Controllers\payment\paymentController;
 use Evryn\LaravelToman\Facades\Toman;
 use Illuminate\Support\Facades\Route;
+use Proengsoft\JsValidation\Facades\JsValidatorFacade;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('blogs')->group(function(){
 Route::get('/', [blogController::class, 'index'])->name('blogs.index');
 Route::get('/{slug}', [blogController::class, 'show'])->name('blogs.show');
+Route::post('postComment', [blogController::class, 'postComment'])->name('blogs.postComment');
+Route::post('load-comments', [blogController::class, 'loadComments'])->name('blogs.loadComments');
+
 });
 
 
@@ -99,10 +103,22 @@ Route::prefix('analysis')->middleware('role:admin,master')->group(function(){
 // blogs
     Route::prefix('blogs')->middleware('role:writer,master')->group(function(){
         Route::get('index', [blogPanelController::class,'index'])->name('Panel.blogs.index');
+        Route::delete('index/{id}', [blogPanelController::class,'destroy'])->name('Panel.blogs.destroy');
+
         Route::get('create', [blogPanelController::class,'create'])->name('Panel.blogs.create');
         Route::post('create', [blogPanelController::class,'store'])->name('Panel.blogs.store');
-        Route::post('upload', [blogPanelController::class,'upload'])->name('Panel.blogs.upload');
+        Route::post('upload_image', [blogPanelController::class, 'upload'])->name('Panel.blogs.upload_image');
 
+        Route::get('edit/{id}', [blogPanelController::class,'edit'])->name('Panel.blogs.edit');
+        Route::post('edit/{id}', [blogPanelController::class,'update'])->name('Panel.blogs.update');
+
+        Route::get('comments',[blogPanelController::class,'comments'])->name('Panel.blogs.comments');
+        Route::get('commentModal',[blogPanelController::class,'commentModal'])->name('Panel.blogs.commentModal');
+        Route::post('updateStatus/{id}',[blogPanelController::class,'updateStatus'])->name('Panel.blogs.updateStatus');
+
+        Route::get('category', [blogPanelController::class,'category'])->name('Panel.blogs.category');
+        Route::post('categoryStore', [blogPanelController::class,'categoryStore'])->name('Panel.blogs.categoryStore');
+        Route::delete('categoryDestroy/{id}', [blogPanelController::class,'categoryDestroy'])->name('Panel.blogs.categoryDestroy');
 });
 // category
     Route::prefix('category')->middleware('role:admin,master')->group(function(){

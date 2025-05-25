@@ -19,43 +19,38 @@
                 </div>
             </div>
             <div class="widget-content widget-content-area">
-@if ($errors->any())
-    <div>
-        <ul style="color: red">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<form action="{{ route('Panel.blogs.store') }}" method="POST" enctype="multipart/form-data" class="w-100">
+<form action="{{ route('Panel.blogs.store') }}" method="POST" id="blogForm" enctype="multipart/form-data" class="w-100">
     @csrf
 
     <div class="row">
         <div class="form-group col-md-6">
             <label>عنوان:</label>
-            <input type="text" class="form-control" name="title" value="{{ old('title') }}" required>
+            <input type="text" id="title" class="form-control " name="title" value="{{ old('title') }}">
         </div>
 
         <div class="form-group col-md-6">
             <label>دسته‌بندی:</label>
-            <select class="form-control" name="category_id" required>
+            <select class="form-control" id="category" name="category_id">
                 @foreach($categories as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                 @endforeach
             </select>
         </div>
     </div>
-
-    <div class="form-group">
+    <div class="row">
+    <div class="form-group col-md-6">
         <label>عکس کاور:</label>
-        <input class="form-control" type="file" name="cover_image">
+        <input class="form-control" id="image" type="file" name="cover_image" >
     </div>
-
+    <div class="form-group col-md-6">
+        <label>slug:</label>
+        <input class="form-control" id="slug" type="slug" name="slug" value="{{ old('slug') }}">
+    </div>
+    </div>
     <div class="form-group">
         <label>متن:</label>
-        <textarea name="content" id="editor" rows="10" required>{{ old('content') }}</textarea>
+    <textarea name="content" id="summernote">{{ old('content') }}</textarea><br>
+
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">ارسال</button>
@@ -68,30 +63,72 @@
 </div>
 
 </div>
-<style>
 
-.ck-editor__editable_inline {
-    background-color: #1b2e4b !important;
-    font-size: 16px !important;
-    font-family: Tahoma, sans-serif !important;
-}
-</style>
-
-
-
-@endsection
 @section('jssrc')
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\blog\blogRequest', '#blogForm'); !!}
+{{-- Summernote CSS --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+
+{{-- Summernote JS --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            ckfinder: {
-            uploadUrl: "{{ route('Panel.blogs.upload') }}?_token={{ csrf_token() }}"
+$(document).ready(function() {
+  $('#summernote').summernote({
+    placeholder: 'محتوای مقاله را وارد کنید...',
+    tabsize: 2,
+    height: 400,
+    lang: 'fa-IR',
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+      ['fontname', ['fontname']],
+      ['fontsize', ['fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['table', ['table']],
+      ['insert', ['link', 'picture', 'video', 'hr']],
+      ['view', ['fullscreen', 'codeview', 'help']]
+    ],
+    callbacks: {
+      onImageUpload: function(files) {
+        let data = new FormData();
+        data.append('file', files[0]);
+        data.append('_token', '{{ csrf_token() }}');  // توجه: در Blade باید این مقدار رندر شود
+
+        $.ajax({
+          url: '{{ route("Panel.blogs.upload_image") }}',       // مسیر آپلود عکس در لاراول
+          method: 'POST',
+          data: data,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            if (response.success) {
+              $('#summernote').summernote('insertImage', response.url);
+            } else {
+              alert('آپلود تصویر با خطا مواجه شد');
             }
-        })
-        .catch(error => {
-            console.error(error);
+          },
+          error: function() {
+            alert('خطا در ارسال درخواست آپلود تصویر');
+          }
         });
+      }
+    }
+  });
+});
+
+  
 </script>
 
 @endsection
+
+@endsection
+
+
+
+
+

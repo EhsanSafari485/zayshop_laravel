@@ -20,16 +20,56 @@ class homeController extends Controller
     // صفحه اصلی
     public function index()
     {
-        $sliders=sliders::all();
+        $sliders=sliders::where('role',0)->get();
+        if ($sliders->isEmpty()) {
+            $sliders=[
+                (object)[
+                'url' => 'http://google.com',
+                'image' => 'default1.jpg',
+                'role' => 0
+                ],(object)[
+                'url' => 'http://google.com',
+                'image' => 'default2.jpg',
+                'role' => 0
+                ],(object)[
+                'url' => 'http://google.com',
+                'image' => 'default3.jpg',
+                'role' => 0
+                ]
+            ];
+        }
         $slider1 = Sliders::where('role', 1)
         ->orderBy('id', 'desc')
         ->take(1)
         ->get();
 
+        if ($slider1->isEmpty()) {
+            $slider1=[
+                (object)[
+                'url' => 'http://google.com',
+                'image' => 'default1.jpg',
+                'role' => 1
+                ]
+            ];
+        }
         $slider2 = Sliders::where('role', 2)
         ->orderBy('id', 'desc')
         ->take(2)
         ->get();
+        if ($slider2->isEmpty()) {
+            $slider2=[
+                (object)[
+                'url' => 'http://google.com',
+                'image' => 'default2.jpg',
+                'role' => 2
+                ],
+                (object)[
+                'url' => 'http://google.com',
+                'image' => 'default3.jpg',
+                'role' => 2
+                ]
+            ];
+        }
         $categories=Category::orderBy('id','desc')->take(15)->get();
         $productsNew = Product::with(['images','variants'])
         ->orderBy('id','desc')

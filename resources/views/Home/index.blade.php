@@ -17,7 +17,6 @@
             $i=0;
         @endphp
         @foreach ($sliders as $slider)
-        @if ($slider->role==0)
         @if ($i==0)
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="{{$i}}" class="active"></li>
         @php
@@ -26,7 +25,6 @@
             @else
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="{{$i}}"></li>
         @endif
-        @endif
             @endforeach
         </ol>
         <div class="carousel-inner">
@@ -34,7 +32,7 @@
                 $i=0;
             @endphp
             @foreach ($sliders as $slider)
-            @if ($slider->role==0)
+
 
             @if ($i==0)
             <div class="carousel-item active">
@@ -50,7 +48,7 @@
                 </div>
             </a>
             </div>
-            @endif
+
             @endforeach
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
@@ -133,14 +131,12 @@
                             %{{ intval($product->discount) }}
                         </div>
                     @endif
-                            @foreach ($product->images as $image)
-                            @if ($image->product_id == $product->id)
+                            @php
+                                $image=$product->images->first();
+                            @endphp
                             <div class="product-image-wrapper">
-                            <img src="{{ asset('images/product/' . $image->image) }}" class="card-img-top product-image" alt="">
+                            <img src="{{$image ? asset('images/product/' . $image->image) : asset('images/product/default.jpg') }}" class="card-img-top product-image" alt="">
                             </div>
-                            @break
-                            @endif
-                        @endforeach
                             </a>
                             <div class="card-body product-body">
                             <a href="{{ route('Home.shop_single', ['slug'=>$product->slug]) }}">
@@ -213,14 +209,12 @@
                         %{{ intval($product->discount) }}
                     </div>
                 @endif
-                        @foreach ($product->images as $image)
-                        @if ($image->product_id == $product->id)
+                        @php
+                            $image=$product->images->first();
+                        @endphp
                         <div class="product-image-wrapper">
-                        <img src="{{ asset('images/product/' . $image->image) }}" class="card-img-top product-image" alt="">
+                        <img src="{{$image ? asset('images/product/' . $image->image) : asset('images/product/default.jpg') }}" class="card-img-top product-image" alt="">
                         </div>
-                        @break
-                        @endif
-                    @endforeach
                         </a>
                         <div class="card-body product-body">
                         <a href="{{ route('Home.shop_single', ['slug'=>$product->slug]) }}">

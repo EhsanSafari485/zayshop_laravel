@@ -21,13 +21,11 @@
                             %{{ intval($product->discount) }}
                         </div>
                     @endif
+                            @php
+                                $image=$product->images->first();
+                            @endphp
+                            <img class="card-img rounded-0 img-fluid" src="{{$image ? asset('images/product/' . $image->image) : asset('images/product/default.jpg') }}">
 
-                    @foreach ($product->images as $image)
-                        @if ($image->product_id == $product->id)
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('images/product/' . $image->image) }}">
-                            @break
-                        @endif
-                    @endforeach
                 </div>
             </div>
         </a>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Bootstrap Forms | CORK الگوی مدیریتی تمام ریسپانسیو </title>
+    <title>پنل</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('PanelAsset/assets/img/favicon.ico') }} "/>
     <link href="{{ asset('PanelAsset/assets/css/loader.css') }} " rel="stylesheet" type="text/css" />
     <script src="{{ asset('PanelAsset/assets/js/loader.js') }} "></script>
@@ -312,6 +312,31 @@
            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
        </svg>
+       </x-slot:icon>
+    </x-sidebar.menu-item>
+    @endrole
+    @role('master','writer')
+
+        <x-sidebar.menu-item
+        id="blogMenu"
+        title="بلاگ"
+        active-pattern="Panel/blogs*"
+        :items="[
+            ['label' => 'لیست بلاگ ها', 'route' => 'Panel.blogs.index'],
+            ['label' => 'ایجاد بلاگ', 'route' => 'Panel.blogs.create'],
+            ['label' => ' کامنت بلاگ ها', 'route' => 'Panel.blogs.comments'],
+            ['label' => 'دسته بندی بلاگ', 'route' => 'Panel.blogs.category'],
+        ]"
+    >
+
+        <x-slot:icon>
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="4" width="18" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="2" fill="none"/>
+  <line x1="7" y1="8" x2="17" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="7" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="8" cy="18.5" r="1.5" fill="none"/>
+</svg>
        </x-slot:icon>
     </x-sidebar.menu-item>
     @endrole
